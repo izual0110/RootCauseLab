@@ -22,7 +22,7 @@ jobs:
         run: docker build -t rootcauselab-codex:ci -f sandboxes/codex/Dockerfile .
 
       - name: Verify Java is available
-        run: docker run --rm rootcauselab-codex:ci java -version
+        run: docker run --rm --entrypoint java rootcauselab-codex:ci -version
 
       - name: Verify Python is available
-        run: docker run --rm rootcauselab-codex:ci python3 --version
+        run: docker run --rm --entrypoint python3 rootcauselab-codex:ci --version
