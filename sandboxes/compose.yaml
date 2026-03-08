@@ -26,7 +26,10 @@ services:
       context: ./codex
     container_name: codex
     network_mode: "service:egress-guard"
+    working_dir: /work
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${CODEX_WORKDIR:-.}:/work
     depends_on:
-      egress-guard:
-        condition: service_healthy
-    restart: unless-stopped
+      - egress-guard
