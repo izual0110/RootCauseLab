@@ -1,0 +1,32 @@
+services:
+  egress-guard:
+    build:
+      context: ./egress-guard
+    container_name: egress-guard
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./egress-guard/allowed-domains.txt:/app/allowed-domains.txt:ro
+    environment:
+      DOMAINS_FILE: /app/allowed-domains.txt
+      REFRESH_SECONDS: "300"
+      DNS_SERVER: "1.1.1.1"
+      ENABLE_IPV6: "false"
+    restart: unless-stopped
+    # healthcheck:
+    #   test: ["CMD-SHELL", "ipset list allowed-domains >/dev/null 2>&1 && ipset list allowed-domains | grep -q '^Number of entries: [1-9]'"]
+    #   interval: 30s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 10s
+
+  codex:
+    build:
+      context: ./codex
+    container_name: codex
+    network_mode: "service:egress-guard"
+    depends_on:
+      egress-guard:
+        condition: service_healthy
+    restart: unless-stopped
