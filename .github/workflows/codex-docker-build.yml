@@ -1,0 +1,28 @@
+name: Codex Docker image checks
+
+on:
+  push:
+    paths:
+      - 'sandboxes/codex/Dockerfile'
+      - '.github/workflows/codex-docker-build.yml'
+  pull_request:
+    paths:
+      - 'sandboxes/codex/Dockerfile'
+      - '.github/workflows/codex-docker-build.yml'
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build codex sandbox image
+        run: docker build -t rootcauselab-codex:ci -f sandboxes/codex/Dockerfile .
+
+      - name: Verify Java is available
+        run: docker run --rm --entrypoint java rootcauselab-codex:ci -version
+
+      - name: Verify Python is available
+        run: docker run --rm --entrypoint python3 rootcauselab-codex:ci --version
