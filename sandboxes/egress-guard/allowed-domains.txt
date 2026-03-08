@@ -1,4 +1,7 @@
+auth.openai.com
 api.openai.com
+chatgpt.com
+openai.com
 github.com
 api.github.com
 raw.githubusercontent.com
