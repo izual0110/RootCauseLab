@@ -8,7 +8,7 @@ RUN microdnf -y update \
         python3 \
         python3-pip \
     && microdnf -y install \
-        https://corretto.aws/downloads/latest/amazon-corretto-25-x64-linux-jdk.rpm \
+        https://corretto.aws/downloads/latest/amazon-corretto-26-x64-linux-jdk.rpm \
     && microdnf clean all
 
 RUN npm i -g @openai/codex \
