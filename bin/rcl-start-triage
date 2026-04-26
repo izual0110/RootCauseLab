@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TITLE="${1:-service-slowdown}"
+
+INCIDENT_DIR="$(./bin/rcl-new-incident "$TITLE")"
+
+cat <<EOF2
+Use prod-triage-agent.
+
+Incident workspace:
+${INCIDENT_DIR}
+
+Start a new RootCauseLab troubleshooting session.
+
+Rules:
+- Use incident-intake first.
+- Ask me one question at a time.
+- Do not ask me to edit YAML manually.
+- You must fill session.yaml yourself.
+- You must save raw command outputs under evidence/.
+- You must update findings.md and timeline.md after each meaningful step.
+- After intake, choose the correct triage skill.
+- Only request read-only production commands.
+- Treat session.yaml as canonical memory.
+- Do not rely on chat memory as source of truth.
+
+Begin with the first intake question.
+EOF2

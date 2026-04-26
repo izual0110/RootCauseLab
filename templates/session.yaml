@@ -1,0 +1,98 @@
+incident:
+  id: ""
+  status: active
+  created_at: ""
+  updated_at: ""
+  title: ""
+
+service:
+  name: ""
+  environment: production
+  dc: ""
+  region: ""
+  host: ""
+  pod: ""
+  instance: ""
+
+symptom:
+  primary: unknown
+  secondary: []
+  started_at: ""
+  scope: unknown
+  user_visible: null
+  notes: ""
+
+impact:
+  severity: unknown
+  affected_users: ""
+  error_rate: ""
+  latency:
+    p50: ""
+    p95: ""
+    p99: ""
+  rps: ""
+  queue_lag: ""
+
+recent_changes:
+  deploy:
+    happened: null
+    notes: ""
+  config:
+    happened: null
+    notes: ""
+  traffic:
+    happened: null
+    notes: ""
+  dependency:
+    happened: null
+    notes: ""
+  infrastructure:
+    happened: null
+    notes: ""
+
+process:
+  pid: null
+  user: ""
+  command_line: ""
+  uptime: ""
+  ports: []
+  fd_count: null
+  jvm:
+    vendor: ""
+    version: ""
+    gc: ""
+    heap_max: ""
+    flags_summary: ""
+
+host:
+  hostname: ""
+  cpu_count: null
+  loadavg:
+    one_min: null
+    five_min: null
+    fifteen_min: null
+  memory:
+    total: ""
+    available: ""
+    swap_used: ""
+  disk:
+    critical_mounts: []
+  network:
+    suspicious_connections: []
+
+classification:
+  primary: unknown
+  candidates: []
+  ruled_out: []
+
+hypotheses: []
+
+evidence_index: []
+
+decisions: []
+
+next_step:
+  kind: question
+  value: "What service is affected?"
+  reason: "Need initial incident intake."
+  risk: none

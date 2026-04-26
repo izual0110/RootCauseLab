@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TITLE="${1:-new-incident}"
+
+TS="$(date +%Y-%m-%d-%H%M)"
+SAFE_TITLE="$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9._-' '-')"
+
+INCIDENT_ID="${TS}-${SAFE_TITLE}"
+INCIDENT_DIR="incidents/${INCIDENT_ID}"
+
+mkdir -p "${INCIDENT_DIR}/evidence"
+
+cp templates/session.yaml "${INCIDENT_DIR}/session.yaml"
+
+python3 - "$INCIDENT_DIR/session.yaml" "$INCIDENT_ID" "$TITLE" <<'PY'
+import sys
+from pathlib import Path
+from datetime import datetime
+
+path = Path(sys.argv[1])
+incident_id = sys.argv[2]
+title = sys.argv[3]
+now = datetime.now().astimezone().isoformat(timespec="seconds")
+
+s = path.read_text()
+s = s.replace('  id: ""', f'  id: "{incident_id}"', 1)
+s = s.replace('  created_at: ""', f'  created_at: "{now}"', 1)
+s = s.replace('  updated_at: ""', f'  updated_at: "{now}"', 1)
+s = s.replace('  title: ""', f'  title: "{title}"', 1)
+path.write_text(s)
+PY
+
+cat > "${INCIDENT_DIR}/findings.md" <<'EOF2'
+# Findings
+
+## Current assessment
+
+Unknown.
+
+## Observations
+
+## Hypotheses
+
+## Ruled out
+
+## Next steps
+EOF2
+
+cat > "${INCIDENT_DIR}/timeline.md" <<EOF2
+# Timeline
+
+- $(date -Iseconds): Incident workspace created.
+EOF2
+
+cat > "${INCIDENT_DIR}/report.md" <<'EOF2'
+# Incident Report
+
+## Summary
+
+## Impact
+
+## Timeline
+
+## Evidence
+
+## Root cause hypothesis
+
+## Contributing factors
+
+## What was ruled out
+
+## Recommended follow-up
+EOF2
+
+cat > "${INCIDENT_DIR}/README.md" <<EOF2
+# ${INCIDENT_ID}
+
+This is a RootCauseLab incident workspace.
+
+## Files
+
+- session.yaml: canonical structured state
+- evidence/: raw command outputs
+- findings.md: interpreted findings
+- timeline.md: chronological timeline
+- report.md: final incident report
+EOF2
+
+echo "${INCIDENT_DIR}"

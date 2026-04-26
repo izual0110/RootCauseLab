@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+INCIDENT_DIR="${1:?Usage: rcl-add-evidence <incident-dir> <type>}"
+TYPE="${2:?Usage: rcl-add-evidence <incident-dir> <type>}"
+
+mkdir -p "${INCIDENT_DIR}/evidence"
+
+N="$(find "${INCIDENT_DIR}/evidence" -type f | wc -l | tr -d ' ')"
+N="$(printf "%03d" "$((N + 1))")"
+
+SAFE_TYPE="$(echo "$TYPE" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9._-' '-')"
+FILE="${INCIDENT_DIR}/evidence/${N}-${SAFE_TYPE}.txt"
+
+cat > "$FILE"
+
+echo "$FILE"
