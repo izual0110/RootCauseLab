@@ -1,3 +1,6 @@
+RootCauseLab is a safe, guided production diagnostics toolkit for investigating degraded services and collecting evidence toward a likely root cause.
+
+
 run sendboxed codex
 
 ```bash
