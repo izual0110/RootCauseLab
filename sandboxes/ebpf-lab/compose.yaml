@@ -1,0 +1,16 @@
+services:
+  ebpf-lab:
+    platform: linux/arm64
+    build: .
+    container_name: ebpf-lab
+    privileged: true
+    # pid: host
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    volumes:
+    #   - /sys:/sys
+    #   - /proc:/proc
+    #   - /sys/kernel/debug:/sys/kernel/debug
+      - /sys/kernel/tracing:/sys/kernel/tracing
+    #   - /lib/modules:/lib/modules:ro

@@ -7,3 +7,11 @@ run sendboxed codex
 
 CODEX_WORKDIR="$PWD" docker-compose -f .../RootCauseLab/sandboxes/compose.yaml run --rm --build codex
 ```
+
+run ebpf-lab
+
+```bash
+cd sandboxes/ebpf-lab
+docker-compose run ebpf-lab
+```
+
