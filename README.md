@@ -18,5 +18,5 @@ docker-compose run ebpf-lab
 run debug-image
 ```bash
 cd sandboxes/debug-image
-docker build -t debug-image . & docker run --privileged -it debug-image
+docker build -t debug-image . && docker run --privileged -it -v /sys:/sys debug-image
 ```
