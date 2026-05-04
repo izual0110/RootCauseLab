@@ -21,3 +21,18 @@ profile-bpfcc -F 49 10
 
 # trace waiting locks/queues for 5sec
 offcputime-bpfcc 5
+
+# -ttt — print absolute Unix timestamps with microseconds.
+# -T — print time spent inside each syscall.
+strace -ttt -T -p <PID>
+
+# trace command "dd"
+strace -c dd if=/dev/zero of=/dev/null bs=1k count=500k
+
+# trace new processes
+execsnoop-bpfcc
+
+# count of system calls
+syscount-bpfcc
+# -P - count by pid
+syscount-bpfcc -P

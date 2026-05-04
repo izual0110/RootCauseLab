@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
     # profile-bpfcc
     bpfcc-tools \
     linux-headers-6.8.0-100 \
+    # for syscount-bpfcc
+    auditd \
  && rm -rf /var/lib/apt/lists/*
 
 CMD ["bash"]
