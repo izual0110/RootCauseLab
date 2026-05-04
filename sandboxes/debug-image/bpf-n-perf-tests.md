@@ -15,3 +15,9 @@ perf script
 perf trace -s
 # perf sendto
 perf trace -e sendto
+
+# 49hz + 10sec
+profile-bpfcc -F 49 10
+
+# trace waiting locks/queues for 5sec
+offcputime-bpfcc 5
