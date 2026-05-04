@@ -6,6 +6,10 @@ RUN apt-get update && apt-get install -y \
     bpftrace \
     # for usdt test
     openjdk-25-jdk \ 
+    # perf
+    linux-tools-generic \
+    # tcptop
+    bpfcc-tools \
  && rm -rf /var/lib/apt/lists/*
 
 CMD ["bash"]
