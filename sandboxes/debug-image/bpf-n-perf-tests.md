@@ -36,3 +36,6 @@ execsnoop-bpfcc
 syscount-bpfcc
 # -P - count by pid
 syscount-bpfcc -P
+
+# trace signals
+bpftrace -e 't:syscalls:sys_enter_kill {time("%H:%M:%S "); printf("%s (PID %d) send %d to PID %d\n", comm, pid, args->sig, args->pid);}'
