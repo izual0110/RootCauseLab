@@ -39,3 +39,9 @@ syscount-bpfcc -P
 
 # trace signals
 bpftrace -e 't:syscalls:sys_enter_kill {time("%H:%M:%S "); printf("%s (PID %d) send %d to PID %d\n", comm, pid, args->sig, args->pid);}'
+# check tracepoint
+bpftrace -l 'tracepoint:syscalls:sys_enter_kill'
+
+# trace io
+bpftrace -e 't:syscalls:sys_enter_recvfrom {@bytes = hist(args->size);}'
+bpftrace -e 't:syscalls:sys_exit_recvfrom {@bytes = hist(args->ret);}'
