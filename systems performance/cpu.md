@@ -35,13 +35,11 @@
 >
 ```bash
 # git clone https://github.com/brendangregg/FlameGraph.git; cd FlameGraph
+# perf record -F 99 -a -g -- sleep 10
 # perf script > out.perf
 # ./stackcollapse-perf.pl out.perf > out.folded
 # ./flamegraph.pl out.folded > out.svg
 ```
-> `` > 
-> `perf record -F 99 -a -g -- sleep 10`
-> `perf script > out.perf`
 
 
 14. `profile (profile-bpfcc)` — Samples stack traces for profiling.
