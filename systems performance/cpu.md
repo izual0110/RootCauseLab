@@ -5,6 +5,7 @@
 3. `mpstat` — Shows per-CPU usage statistics.
 4. `sar <PID>` — Shows historical system activity stats.
 5. `ps` — Lists running processes.
+> `ps aux` Shows all processes with user, CPU, memory, and command details.
 6. `top` — Shows live process and CPU/memory usage.
 7. `pidstat` — Shows per-process CPU, memory, and I/O stats.
 8. `time` — Measures command execution time.
