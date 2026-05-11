@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
     # tcptop-bpfcc
     # profile-bpfcc
     bpfcc-tools \
-    linux-headers-6.8.0-100 \
+    # for profile-bpfcc
     # for syscount-bpfcc
+    linux-headers-$(uname -r) \
     auditd \
  && rm -rf /var/lib/apt/lists/*
 
