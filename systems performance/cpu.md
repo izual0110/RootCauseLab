@@ -19,6 +19,12 @@
 13. `perf` — Profiles CPU events and kernel/user activity.
 > `perf record -F 99 <command>`
 >
+> `perf record -F 99 -p <PID>`
+>
+> `perf stat -a -- sleep 30`
+>
+> `perf list` - print events
+>
 > `perf record -F 99 -a -g -- sleep 10` - profile whole system
 >
 > `perf record -e sched:sched_process_exec -a` - profile new processes through `exec`
@@ -40,12 +46,22 @@
 # ./stackcollapse-perf.pl out.perf > out.folded
 # ./flamegraph.pl out.folded > out.svg
 ```
-
-
 14. `profile (profile-bpfcc)` — Samples stack traces for profiling.
+> `profile-bpfcc -p <PID>`
+>
+```bash
+# git clone https://github.com/brendangregg/FlameGraph.git; cd FlameGraph
+# profile-bpfcc -af 10 > out.stack
+# ./flamegraph.pl --hash out.stack > out1.svg
+```
 15. `cpudist (cpudist-bpfcc)` — Shows CPU time distribution as a histogram.
-16. `runqlat (runqlat-bpfcc)` — Shows scheduler run queue latency.
+> `cpudist-bpfcc 10 1` - `10` - duration, `1` - count of printing
+16. `runqlat (runqlat-bpfcc)` — Shows scheduler run queue latency. (dangerous, might be huge overhead)
+> `runqlat-bpfcc 10 1` - `10` - duration, `1` - count of printing
 17. `runqlen (runqlen-bpfcc)` — Shows scheduler run queue length.
+> `runqlen-bpfcc 10 1` - `10` - duration, `1` - count of printing
 18. `softirqs (softirqs-bpfcc)` — Shows software interrupt activity.
+> `softirqs-bpfcc 10 1` - `10` - duration, `1` - count of printing
 19. `hardirqs (hardirqs-bpfcc)` — Shows hardware interrupt activity.
+> `hardirqs-bpfcc 10 1` - `10` - duration, `1` - count of printing
 20. `bpftrace` — Runs eBPF tracing scripts.
