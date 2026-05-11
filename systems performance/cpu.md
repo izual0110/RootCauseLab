@@ -64,4 +64,9 @@
 > `softirqs-bpfcc 10 1` - `10` - duration, `1` - count of printing
 19. `hardirqs (hardirqs-bpfcc)` — Shows hardware interrupt activity.
 > `hardirqs-bpfcc 10 1` - `10` - duration, `1` - count of printing
-20. `bpftrace` — Runs eBPF tracing scripts.
+20. `bpftrace` — Runs eBPF tracing scripts.\
+> `bpftrace -e 'tracepoint:syscalls:sys_enter_* /pid == <PID>/ {@[probe]=count();}'` 
+>
+> `bpftrace -e 'tracepoint:syscalls:sys_enter_* {@[pid,probe]=count();}'`
+>
+> `bpftrace -l | grep tracepoint:syscalls:sys_enter_`
