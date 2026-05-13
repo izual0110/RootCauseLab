@@ -47,8 +47,9 @@
 > `bpftrace -e 'software:page-faults:1 {@[comm, pid] = count(); }'`
 >
 
-ARM ->
+
 ```bash
+# ARM!!! ->
 # bpftrace -e 'u:/lib/aarch64-linux-gnu/libc.so.6:malloc /pid == 1/ {@[ustack] = hist(arg0);}' > out.stack`
 # ./stackcollapse-perf.pl out.stacks | ./flamegraph.pl --hash --bgcolor=green --count=pages --title="malloc() bytes" > out.svg
 # cat out.svg | gzip | base64
