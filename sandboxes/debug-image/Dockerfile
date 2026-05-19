@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     # for syscount-bpfcc
     linux-headers-$(uname -r) \
     auditd \
+    strace \
+    fatrace \
  && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/brendangregg/FlameGraph.git
