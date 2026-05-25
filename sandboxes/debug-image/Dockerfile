@@ -1,13 +1,13 @@
 FROM ubuntu:24.04
-#           ^ colima dependency 
+#           ^ colima dependency
 
 RUN apt-get update && apt-get install -y \
     git \
     # for mpstat ->
-    sysstat \ 
+    sysstat \
     bpftrace \
     # for usdt test
-    openjdk-25-jdk \ 
+    openjdk-25-jdk \
     # perf
     linux-tools-$(uname -r) \
     # tcptop-bpfcc
@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y \
     auditd \
     strace \
     fatrace \
+    # for iotop
+    iotop \
+    # for blktrace
+    blktrace \
  && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/brendangregg/FlameGraph.git
