@@ -31,6 +31,8 @@ RUN apt-get update && apt-get install -y \
     iperf \
     # for ethtool
     ethtool \
+    # for tcpdump
+    tcpdump \
  && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/brendangregg/FlameGraph.git

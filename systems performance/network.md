@@ -27,11 +27,20 @@
 7. nicstat - Network Interface Statistics
 8. ethtool - Display or change Ethernet device settings
 > `ethtool -i eth0` - `i` - show driver info, `eth0` - name of the network interface
-9. tcplife
-10. tcptop
-11. tcpetrans
+9. tcplife-bpfcc - trace TCP connection life cycle
+10. tcptop-bpfcc - trace TCP connection top (`-C` no reset screen)
+11. tcpretrans-bpfcc - trace TCP retransmissions
 12. bpftrace
+> `bpftrace -e 't:syscalls:sys_enter_accept* { @[pid,comm] = count();}'` - trace `accept` syscalls
+>
+> `bpftrace -e 't:syscalls:sys_enter_connect { @[pid,comm] = count();}'` - trace `connect` syscalls
+>
+> `bpftrace -e 't:syscalls:sys_enter_connect { @[ustack,comm] = count();}'` - trace `connect` syscalls by user stack
+```bash
+# bpftrace -e 't:sock:inet_sock_set_state /args->newstate == 1 && args->family == 2/ {@[ntop(args->saddr), ntop(args->daddr)] = count();}'
+```
 13. tcpdump
+> `tcpdump -i any -nn -c 1000 -w 1.pcap 'host 10.10.10.10 and port 8080'`
 14. wireshark
 
 # Experiments
