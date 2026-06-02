@@ -23,6 +23,14 @@ RUN apt-get update && apt-get install -y \
     iotop \
     # for blktrace
     blktrace \
+    # for netstat
+    net-tools \
+    # for ss
+    iproute2 \
+    # for iperf
+    iperf \
+    # for ethtool
+    ethtool \
  && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/brendangregg/FlameGraph.git
