@@ -20,3 +20,9 @@ run debug-image
 cd sandboxes/debug-image
 docker build -t debug-image . && docker run --privileged -it -v /sys:/sys debug-image
 ```
+
+```bash
+cd sandboxes/debug-image
+docker build -t debug-image . 
+docker run --rm -it --privileged --pid=container:<TARGET_CONTAINER> -v /sys:/sys debug-image
+```
