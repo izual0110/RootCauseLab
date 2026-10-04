@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     sysstat \
     bpftrace \
     # for usdt test
-    openjdk-25-jdk \
+    openjdk-27-jdk \
     # perf
     linux-tools-$(uname -r) \
     # tcptop-bpfcc
