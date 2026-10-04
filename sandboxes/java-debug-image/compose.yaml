@@ -1,0 +1,13 @@
+services:
+  java-debug:
+    build:
+      context: .
+    image: java-debug-image
+    init: true
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - java-debug-data:/data
+
+volumes:
+  java-debug-data:

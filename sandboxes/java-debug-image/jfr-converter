@@ -1,0 +1,2 @@
+#!/bin/sh
+exec java --enable-native-access=ALL-UNNAMED -jar /opt/async-profiler/lib/jfr-converter.jar "$@"

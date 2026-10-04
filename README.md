@@ -26,3 +26,13 @@ cd sandboxes/debug-image
 docker build -t debug-image . 
 docker run --rm -it --privileged --pid=container:<TARGET_CONTAINER> -v /sys:/sys debug-image
 ```
+
+run Java debug-image (JDK 27, JOL built from source, async-profiler, and jfr-merger)
+
+```bash
+cd sandboxes/java-debug-image
+docker compose up -d --build
+docker compose exec java-debug bash
+```
+
+jfr-merger UI: http://localhost:8080/index.html. See [Java debug-image documentation](sandboxes/java-debug-image/README.md) for CLI examples and attaching to another container's JVM.
